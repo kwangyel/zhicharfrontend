@@ -27,7 +27,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterceptorService } from './service/http-interceptor.service';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { MapComponent } from './map/map.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
@@ -73,7 +72,6 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
     LayoutModule,
     MatListModule,
     MatCheckboxModule,
-    ZXingScannerModule,
     WebcamModule
   ],
   providers: [
