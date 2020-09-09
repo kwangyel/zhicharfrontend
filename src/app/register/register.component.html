@@ -1,0 +1,118 @@
+<mat-toolbar>
+  <span>Registration</span>
+  <span class="menu-spacer"></span>
+</mat-toolbar>
+<div class="form-wraper" style="text-align:center">
+  <button *ngIf="displayCamera" mat-raised-button color="primary" (click)="triggerCamera()" aria-label="Click to open camera for qr code scanning">
+    <mat-icon>camera_alt</mat-icon> CLICK TO SCAN QR CODE
+  </button>
+  <div class="form-container card" *ngIf="displayForm">
+    <div class="form-body">
+
+      <form [formGroup]="unitform">
+
+        <mat-form-field class="justifier">
+          <mat-label>Unit ID</mat-label>
+          <input matInput type="text" name="unitid" formControlName="unitIdControl" required min="0" [readonly]="disableForm" required autofocus>
+        </mat-form-field>
+        <mat-form-field class="justifier">
+          <mat-label>Unit Use</mat-label>
+          <mat-select name="typeshop" formControlName="unitTypeControl" (selectionChange)="changeDiff($event)"[readonly]="disableForm" required>
+            <mat-option *ngFor="let unittype of unittypes" [value]="unittype.id">
+              {{unittype.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="justifier" *ngIf="showOtherType">
+          <mat-label>Specify other unit use</mat-label>
+          <input matInput type="text" name="otheruse" formControlName="otherUnitUseControl" required min="0" required autofocus>
+        </mat-form-field>
+      </form>
+      <form [formGroup]="shopform" *ngIf="displayShopForm">
+        <mat-form-field class="justifier">
+          <mat-label>Type of Shop</mat-label>
+          <mat-select name="typeshop" formControlName="shopTypeControl" (selectionChange) = "selectShopType($event)" [readonly]="disableForm" required>
+            <mat-option *ngFor="let shoptype of shoptypes" [value]="shoptype.id">
+              {{shoptype.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="justifier" *ngIf = "showOtherShopType">
+          <mat-label>Specify shop type</mat-label>
+          <input matInput type="text" name="otherShopType" formControlName="otherShopControl" required min="0" [readonly]="disableForm" required autofocus>
+        </mat-form-field>
+        <mat-form-field class="justifier">
+          <mat-label>Name of shop</mat-label>
+          <input matInput type="text" name="mobileNo" formControlName="shopNameControl" required min="0" [readonly]="disableForm" required autofocus>
+        </mat-form-field>
+
+        <mat-form-field class="justifier">
+          <mat-label>Contact Number</mat-label>
+          <input matInput type="text" name="mobileNo" formControlName="shopPhControl" required min="0" [readonly]="disableForm" required autofocus>
+        </mat-form-field>
+
+      </form>
+
+      <form [formGroup]="registerForm" *ngIf="displayResdForm">
+        <mat-form-field class="justifier">
+          <mat-label>Head of Household</mat-label>
+          <input matInput type="text" name="mobileNo" formControlName="householdControl" required min="0" [readonly]="disableForm" required autofocus>
+        </mat-form-field>
+        <mat-form-field class="justifier">
+          <mat-label>Contact Number</mat-label>
+          <input matInput type="number" name="mobileNo" formControlName="mobileNoControl" required min="0" [readonly]="disableForm" required autofocus>
+        </mat-form-field>
+        <form [formGroup]="ageGender" >
+          <div >
+            <mat-form-field appearance="outline" style="width:50%;">
+              <mat-label>Male below 10</mat-label>
+              <input matInput type ="number" name="male_10" formControlName="male10Control">
+            </mat-form-field>
+            <mat-form-field appearance="outline"style="width:50%;">
+              <mat-label>Female below 10</mat-label>
+              <input matInput type ="number" name="female_10" formControlName="female10Control">
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" style="width:50%;">
+              <mat-label>Male 10-60</mat-label>
+              <input matInput type ="number" name="male_60" formControlName="male60Control">
+            </mat-form-field>
+            <mat-form-field appearance="outline"style="width:50%;">
+              <mat-label>Female 10-60</mat-label>
+              <input matInput type ="number" name="female_1060" formControlName="female1060Control">
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" style="width:50%;">
+              <mat-label>Male above 60</mat-label>
+              <input matInput type ="number" name="male_60" formControlName="male60Control">
+            </mat-form-field>
+            <mat-form-field appearance="outline"style="width:50%;">
+              <mat-label>Female above 60</mat-label>
+              <input matInput type ="number" name="female_60" formControlName="female60Control">
+            </mat-form-field>
+          </div>
+        </form>
+        <mat-form-field class="justifier">
+          <mat-label>Differently abled</mat-label>
+          <mat-select name="nationality" formControlName="diffabledControl" [readonly]="disableForm" required>
+            <mat-option *ngFor="let nationality of nationalities" [value]="nationality.id">
+              {{nationality.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <!-- <mat-form-field class="justifier">
+          <mat-label>Emergency Mobile Number</mat-label>
+          <input matInput type="number" name="emergencyMobileNo" formControlName="emergencyMobileNoControl" min="0" [readonly]="disableForm" required>
+        </mat-form-field> -->
+      </form>
+    </div>
+    <div class="form-footer">
+      <button mat-raised-button class="btn custom-btn" (click)="submit()" color="primary" >
+        <mat-icon>note_add</mat-icon> REGISTER
+      </button>
+    </div>
+  </div>
+</div>

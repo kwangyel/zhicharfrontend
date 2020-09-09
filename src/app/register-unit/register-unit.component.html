@@ -1,0 +1,53 @@
+<mat-toolbar>
+  <span>Register Building</span>
+  <span class="menu-spacer"></span>
+</mat-toolbar>
+<div class="form-wraper" style="text-align:center">
+  <div class="form-container card" >
+    <div class="form-body">
+      <form [formGroup]="buildingform">
+        <mat-form-field class="justifier">
+          <mat-label>Building Name</mat-label>
+          <input matInput type="text" name="mobileNo" formControlName="buildingNameControl" required min="0" [readonly]="disableForm" required autofocus>
+        </mat-form-field>
+        <mat-form-field class="justifier">
+          <mat-label>Name of Building Owner</mat-label>
+          <input matInput type="text" name="mobileNo" formControlName="ownerNameControl" required min="0" [readonly]="disableForm" required autofocus>
+        </mat-form-field>
+        <mat-form-field class="justifier">
+          <mat-label>Contact Number</mat-label>
+          <input matInput type="tel" name="totalMale" formControlName="contactControl" min="0" [readonly]="disableForm" required>
+        </mat-form-field>
+        <mat-form-field class="justifier">
+          <mat-label>Building Use</mat-label>
+          <mat-select name="building use" (selectionChange) = "selectUse($event)" required>
+            <mat-option *ngFor="let use of uses" [value]="use.id">
+              {{use.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="justifier" *ngIf="showOtherField">
+          <mat-label>Specify other use</mat-label>
+          <input matInput type="text" name="otherUse" formControlName="otherUseControl" min="0"  required>
+        </mat-form-field>
+        <div style="text-align:left;padding-top:10px;">
+          <mat-label>Select ATMs present:</mat-label>
+            <span class="example-list-section">
+              <ul>
+                <li *ngFor="let atm of atms">
+                  <mat-checkbox [checked]="atm.checked" (change) = "atmSelect(atm,$event)">
+                    {{atm.name}}
+                  </mat-checkbox>
+                </li>
+              </ul>
+            </span>
+        </div>
+      </form>
+    </div>
+    <div class="form-footer">
+      <button mat-raised-button class="btn custom-btn" (click)="submit()" >
+        <mat-icon>note_add</mat-icon> REGISTER
+      </button>
+    </div>
+  </div>
+</div>
