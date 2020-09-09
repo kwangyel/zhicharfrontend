@@ -8,7 +8,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouteGuard } from './service/route.guard';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { MapComponent } from './map/map.component';
-import { UpdateHouseholdComponent } from './update-household/update-household.component';
 import { RegisterUnitComponent } from './register-unit/register-unit.component';
 import { UploadImageComponent } from './upload-image/upload-image.component';
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { API_URL } from '../app.constants';
+import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 
 export const TOKEN = 'token';
@@ -12,6 +12,7 @@ export const IS_AUTHENTICATED = 'isAuthenticated';
   providedIn: 'root'
 })
 export class AuthenticationService {
+  API_URL = environment.API_URL;
 
   public authState: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -20,7 +21,7 @@ export class AuthenticationService {
   ) { }
 
   validateLogin(cid, password) {
-    return this.http.post<any>(`${API_URL}/login`, {
+    return this.http.post<any>(`${this.API_URL}/login`, {
       cid,
       password
     }).pipe(

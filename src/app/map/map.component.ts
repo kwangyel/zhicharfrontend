@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { DataService } from '../service/data.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
-import { API_URL } from '../app.constants';
+import { environment } from '../../environments/environment';
 
 export class Building {
   lat: number;
@@ -19,6 +19,8 @@ export class Building {
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
+
+  API_URL = environment.API_URL;
 
   latitude: number;
   longitude: number;
@@ -343,7 +345,7 @@ export class MapComponent implements OnInit {
 
     // this.http.get(`https://outpassdashboard.desuung.org.bt/api/buildings?sub_zone_id=${zoneId}`).subscribe((json: any) => {
 
-    this.http.get(`${API_URL}/get-buildings-json/${zoneId}`).subscribe((json: any) => {
+    this.http.get(`${this.API_URL}/get-buildings-json/${zoneId}`).subscribe((json: any) => {
       this.json = json;
       console.log(json);
       const geoJson = L.geoJSON(this.json, {

@@ -111,17 +111,6 @@ module.exports = "<mat-toolbar>\n  <span>Select a structure</span>\n  <span clas
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/modal/modal.component.html":
-/*!**********************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/modal/modal.component.html ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<h1 mat-dialog-title>Take Picture</h1>\n<div mat-dialog-content>\n  <zxing-scanner (scanSuccess)=\"onCodeResult($event)\"></zxing-scanner>\n</div>\n"
-
-/***/ }),
-
 /***/ "./node_modules/raw-loader/index.js!./src/app/register-unit/register-unit.component.html":
 /*!**************************************************************************************!*\
   !*** ./node_modules/raw-loader!./src/app/register-unit/register-unit.component.html ***!
@@ -152,17 +141,6 @@ module.exports = "<mat-toolbar>\n  <span>Registration</span>\n  <span class=\"me
 /***/ (function(module, exports) {
 
 module.exports = "<mat-toolbar>\n  <span>Select Zone</span>\n</mat-toolbar>\n<div class=\"form-wraper\">\n  <div class=\"form-container card\">\n    <div class=\"form-header\">\n    </div>\n    <div class=\"form-body\">\n      <form [formGroup]=\"zoneForm\">\n        <mat-form-field class=\"justifier\">\n          <mat-label>Dzongkhag</mat-label>\n          <mat-select #dzongkhag formControlName=\"dzongkhagControl\" name=\"dzongkhag\" (selectionChange)=\"getZoneList(dzongkhag.value)\" required>\n            <mat-option *ngFor=\"let dzongkhag of dzongkhags\" [value]=\"dzongkhag.id\">\n              {{dzongkhag.name}}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n        <mat-form-field class=\"justifier\">\n          <mat-label>Zone</mat-label>\n          <mat-select #zone formControlName=\"zoneControl\" name=\"zone\" (selectionChange)=\"getSubzoneList(zone.value)\" required>\n            <mat-option *ngFor=\"let zone of zones\" [value]=\"zone.id\">\n              {{zone.name}}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n        <mat-form-field class=\"justifier\">\n          <mat-label>Sub-zone</mat-label>\n          <mat-select formControlName=\"subZoneControl\" name=\"subZone\" required>\n            <mat-option *ngFor=\"let subZone of subZones\" [value]=\"subZone.id\">\n              {{subZone.name}}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n        <!-- <mat-form-field class=\"justifier\">\n          <mat-label>Shop</mat-label>\n          <mat-select name=\"shop\" formControlName=\"shopControl\">\n            <mat-option *ngFor=\"let shop of shops\" [value]=\"shop.id\">\n              {{shop.name}}\n            </mat-option>\n          </mat-select>\n        </mat-form-field> -->\n      </form>\n    </div>\n    <div class=\"form-footer\">\n      <button mat-raised-button class=\"btn custom-btn\" (click)=\"redirectToDashboard()\" color=\"primary\" [disabled]=\"!zoneForm.valid\">\n        <mat-icon>arrow_forward</mat-icon> Proceed\n      </button>\n    </div>\n  </div>\n</div>\n"
-
-/***/ }),
-
-/***/ "./node_modules/raw-loader/index.js!./src/app/update-household/update-household.component.html":
-/*!********************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/update-household/update-household.component.html ***!
-  \********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<mat-toolbar>\n  <span>Update Household Details</span>\n  <span class=\"menu-spacer\"></span>\n  <!-- <button mat-mini-fab color=\"primary\" (click)=\"triggerCamera()\" aria-label=\"Click to open camera for qr code scanning\">\n    <mat-icon>camera_alt</mat-icon>\n  </button> -->\n</mat-toolbar>\n<div class=\"form-wraper\">\n  <div class=\"form-container card\">\n    <div class=\"form-body\">\n      <form [formGroup]=\"updateForm\">\n        <mat-form-field class=\"justifier\">\n          <mat-label>Mobile Number</mat-label>\n          <input matInput type=\"number\" name=\"mobileNo\" formControlName=\"mobileNoControl\" required min=\"0\" [readonly]=\"disableForm\" autofocus>\n        </mat-form-field>\n        <mat-form-field class=\"justifier\">\n          <mat-label>Total Male</mat-label>\n          <input matInput type=\"number\" name=\"totalMale\" formControlName=\"totalMaleControl\" min=\"0\" [readonly]=\"disableForm\" required>\n        </mat-form-field>\n        <mat-form-field class=\"justifier\">\n          <mat-label>Total Female</mat-label>\n          <input matInput type=\"number\" name=\"totalFemale\" formControlName=\"totalFemaleControl\" min=\"0\" [readonly]=\"disableForm\" required>\n        </mat-form-field>\n        <mat-form-field class=\"justifier\">\n          <mat-label>Members (Age over 60)</mat-label>\n          <input matInput type=\"number\" name=\"ageOverFifty\" formControlName=\"ageOverFiftyControl\" min=\"0\" [readonly]=\"disableForm\" required>\n        </mat-form-field>\n        <mat-form-field class=\"justifier\">\n          <mat-label>Members (Age below 10)</mat-label>\n          <input matInput type=\"number\" name=\"ageBelowTen\" formControlName=\"ageBelowTenControl\" min=\"0\" [readonly]=\"disableForm\" required>\n        </mat-form-field>\n        <mat-form-field class=\"justifier\">\n          <mat-label>Nationality</mat-label>\n          <mat-select name=\"nationality\" formControlName=\"nationalityControl\" [readonly]=\"disableForm\" required>\n            <mat-option *ngFor=\"let nationality of nationalities\" [value]=\"nationality.id\">\n              {{nationality.name}}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n        <mat-form-field class=\"justifier\">\n          <mat-label>Emergency Mobile Number</mat-label>\n          <input matInput type=\"number\" name=\"emergencyMobileNo\" formControlName=\"emergencyMobileNoControl\" min=\"0\" [readonly]=\"disableForm\" required>\n        </mat-form-field>\n      </form>\n    </div>\n    <div class=\"form-footer\">\n      <button mat-raised-button class=\"btn custom-btn\" (click)=\"update()\" color=\"primary\" [disabled]=\"!updateForm.valid\">\n        <mat-icon>note_add</mat-icon> UPDATE\n      </button>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -362,23 +340,6 @@ var AppComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/app.constants.ts":
-/*!**********************************!*\
-  !*** ./src/app/app.constants.ts ***!
-  \**********************************/
-/*! exports provided: API_URL */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "API_URL", function() { return API_URL; });
-// export const API_URL = 'http://covidoutpass.local/api';
-// export const API_URL = 'https://outpassdashboard.desuung.org.bt/api';
-var API_URL = 'http://localhost:8000';
-
-
-/***/ }),
-
 /***/ "./src/app/app.module.ts":
 /*!*******************************!*\
   !*** ./src/app/app.module.ts ***!
@@ -409,15 +370,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _zxing_ngx_scanner__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @zxing/ngx-scanner */ "./node_modules/@zxing/ngx-scanner/fesm5/zxing-ngx-scanner.js");
 /* harmony import */ var _change_password_change_password_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./change-password/change-password.component */ "./src/app/change-password/change-password.component.ts");
 /* harmony import */ var _map_map_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./map/map.component */ "./src/app/map/map.component.ts");
-/* harmony import */ var _modal_modal_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./modal/modal.component */ "./src/app/modal/modal.component.ts");
-/* harmony import */ var _confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./confirm-dialog/confirm-dialog.component */ "./src/app/confirm-dialog/confirm-dialog.component.ts");
-/* harmony import */ var _update_household_update_household_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./update-household/update-household.component */ "./src/app/update-household/update-household.component.ts");
-/* harmony import */ var _register_unit_register_unit_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./register-unit/register-unit.component */ "./src/app/register-unit/register-unit.component.ts");
-/* harmony import */ var _camera_camera_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./camera/camera.component */ "./src/app/camera/camera.component.ts");
-/* harmony import */ var ngx_webcam__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ngx-webcam */ "./node_modules/ngx-webcam/fesm5/ngx-webcam.js");
-/* harmony import */ var _upload_image_upload_image_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./upload-image/upload-image.component */ "./src/app/upload-image/upload-image.component.ts");
-
-
+/* harmony import */ var _confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./confirm-dialog/confirm-dialog.component */ "./src/app/confirm-dialog/confirm-dialog.component.ts");
+/* harmony import */ var _register_unit_register_unit_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./register-unit/register-unit.component */ "./src/app/register-unit/register-unit.component.ts");
+/* harmony import */ var _camera_camera_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./camera/camera.component */ "./src/app/camera/camera.component.ts");
+/* harmony import */ var ngx_webcam__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ngx-webcam */ "./node_modules/ngx-webcam/fesm5/ngx-webcam.js");
+/* harmony import */ var _upload_image_upload_image_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./upload-image/upload-image.component */ "./src/app/upload-image/upload-image.component.ts");
 
 
 
@@ -457,12 +414,10 @@ var AppModule = /** @class */ (function () {
                 _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_10__["DashboardComponent"],
                 _change_password_change_password_component__WEBPACK_IMPORTED_MODULE_18__["ChangePasswordComponent"],
                 _map_map_component__WEBPACK_IMPORTED_MODULE_19__["MapComponent"],
-                _modal_modal_component__WEBPACK_IMPORTED_MODULE_20__["ModalComponent"],
-                _confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_21__["ConfirmDialogComponent"],
-                _update_household_update_household_component__WEBPACK_IMPORTED_MODULE_22__["UpdateHouseholdComponent"],
-                _register_unit_register_unit_component__WEBPACK_IMPORTED_MODULE_23__["RegisterUnitComponent"],
-                _camera_camera_component__WEBPACK_IMPORTED_MODULE_24__["CameraComponent"],
-                _upload_image_upload_image_component__WEBPACK_IMPORTED_MODULE_26__["UploadImageComponent"],
+                _confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_20__["ConfirmDialogComponent"],
+                _register_unit_register_unit_component__WEBPACK_IMPORTED_MODULE_21__["RegisterUnitComponent"],
+                _camera_camera_component__WEBPACK_IMPORTED_MODULE_22__["CameraComponent"],
+                _upload_image_upload_image_component__WEBPACK_IMPORTED_MODULE_24__["UploadImageComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -487,14 +442,14 @@ var AppModule = /** @class */ (function () {
                 _angular_material_list__WEBPACK_IMPORTED_MODULE_16__["MatListModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatCheckboxModule"],
                 _zxing_ngx_scanner__WEBPACK_IMPORTED_MODULE_17__["ZXingScannerModule"],
-                ngx_webcam__WEBPACK_IMPORTED_MODULE_25__["WebcamModule"]
+                ngx_webcam__WEBPACK_IMPORTED_MODULE_23__["WebcamModule"]
             ],
             providers: [
                 { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_13__["HTTP_INTERCEPTORS"], useClass: _service_http_interceptor_service__WEBPACK_IMPORTED_MODULE_14__["HttpInterceptorService"], multi: true }
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]],
             schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_2__["CUSTOM_ELEMENTS_SCHEMA"]],
-            entryComponents: [_modal_modal_component__WEBPACK_IMPORTED_MODULE_20__["ModalComponent"], _confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_21__["ConfirmDialogComponent"]]
+            entryComponents: [_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_20__["ConfirmDialogComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -747,13 +702,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _modal_modal_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../modal/modal.component */ "./src/app/modal/modal.component.ts");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _service_data_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../service/data.service */ "./src/app/service/data.service.ts");
-/* harmony import */ var _confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../confirm-dialog/confirm-dialog.component */ "./src/app/confirm-dialog/confirm-dialog.component.ts");
-/* harmony import */ var _service_sound_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../service/sound.service */ "./src/app/service/sound.service.ts");
-
-
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _service_data_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../service/data.service */ "./src/app/service/data.service.ts");
+/* harmony import */ var _service_sound_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../service/sound.service */ "./src/app/service/sound.service.ts");
 
 
 
@@ -802,108 +753,6 @@ var DashboardComponent = /** @class */ (function () {
     DashboardComponent.prototype.unit = function () {
         this.router.navigate(['register']);
     };
-    DashboardComponent.prototype.scan = function () {
-        var _this = this;
-        this.getLocation();
-        var dialogRef = this.dialog.open(_modal_modal_component__WEBPACK_IMPORTED_MODULE_3__["ModalComponent"], {
-            width: '300px',
-            data: {}
-        });
-        dialogRef.afterClosed().subscribe(function (result) {
-            _this.dataService.validateQRCode('scan', result).subscribe(function (response) {
-                _this.soundService.successBeep();
-                if (response.status_code === 'ACTIVE') {
-                    if (response.data.building_id === 0) {
-                        var confirmDialog = _this.dialog.open(_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_6__["ConfirmDialogComponent"], {
-                            data: {
-                                title: 'Alert!',
-                                message: 'This QR Code is not associated with a building, please select a building.'
-                            }
-                        });
-                        confirmDialog.afterClosed().subscribe(function (confirmResult) {
-                            if (confirmResult) {
-                                sessionStorage.setItem('transactionType', 'update');
-                                sessionStorage.setItem('qrUUID', result);
-                                _this.router.navigate(['map']);
-                            }
-                        });
-                        _this.qrcode.qr_code_id = response.qr_code_id;
-                        _this.qrcode.sub_zone_id = Number(sessionStorage.getItem('zoneId'));
-                        _this.qrcode.user_id = Number(sessionStorage.getItem('userId'));
-                        _this.qrcode.household_detail_id = response.data.id;
-                        _this.qrcode.lat = _this.latitude;
-                        _this.qrcode.lng = _this.longitude;
-                        _this.qrcode.accuracy = _this.accuracy;
-                        _this.dataService.postQRScan(_this.qrcode).subscribe(function (resp) {
-                            console.log('QR Scan successful');
-                        });
-                    }
-                    else {
-                        _this.qrcode.qr_code_id = response.qr_code_id;
-                        _this.qrcode.sub_zone_id = Number(sessionStorage.getItem('zoneId'));
-                        _this.qrcode.user_id = Number(sessionStorage.getItem('userId'));
-                        _this.qrcode.household_detail_id = response.data.id;
-                        _this.qrcode.lat = _this.latitude;
-                        _this.qrcode.lng = _this.longitude;
-                        _this.qrcode.accuracy = _this.accuracy;
-                        _this.dataService.postQRScan(_this.qrcode).subscribe(function (resp) {
-                            _this.snackBar.open('QR code successfully scanned with the current location', '', {
-                                duration: 5000,
-                                verticalPosition: 'top',
-                                panelClass: ['success-snackbar']
-                            });
-                        });
-                    }
-                }
-                else if (response.status_code === 'INVALID') {
-                    var confirmDialog = _this.dialog.open(_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_6__["ConfirmDialogComponent"], {
-                        data: {
-                            title: 'Alert!',
-                            message: 'The QR code is invalid. Please reissue a new QR code?'
-                        }
-                    });
-                    confirmDialog.afterClosed().subscribe(function (confirmResult) {
-                        if (confirmResult) {
-                            _this.router.navigate(['map']);
-                            sessionStorage.setItem('requestType', 'SCAN');
-                            sessionStorage.setItem('qrCodeId', 'NA');
-                            sessionStorage.setItem('transactionType', 'registration');
-                        }
-                    });
-                }
-                else if (response.status_code === 'INACTIVE') {
-                    var confirmDialog = _this.dialog.open(_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_6__["ConfirmDialogComponent"], {
-                        data: {
-                            title: 'Alert!',
-                            message: 'Scan failed, this QR Code has not been registered with any household. Please register a new household?'
-                        }
-                    });
-                    confirmDialog.afterClosed().subscribe(function (confirmResult) {
-                        if (confirmResult) {
-                            _this.router.navigate(['map']);
-                            sessionStorage.setItem('requestType', 'REGISTER');
-                            sessionStorage.setItem('qrCodeId', response.qr_code_id);
-                            sessionStorage.setItem('transactionType', 'registration');
-                        }
-                    });
-                }
-                else {
-                    _this.snackBar.open('QR Code scan failed, please try again.', '', {
-                        duration: 5000,
-                        verticalPosition: 'top',
-                        panelClass: ['error-snackbar']
-                    });
-                }
-            }, function (err) {
-                _this.soundService.failureBeep();
-                _this.snackBar.open('QR Code scan failed, please try again.', '', {
-                    duration: 5000,
-                    verticalPosition: 'top',
-                    panelClass: ['error-snackbar']
-                });
-            });
-        });
-    };
     DashboardComponent.prototype.getLocation = function () {
         var _this = this;
         if (navigator.geolocation) {
@@ -927,10 +776,10 @@ var DashboardComponent = /** @class */ (function () {
     DashboardComponent.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
-        { type: _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialog"] },
-        { type: _service_data_service__WEBPACK_IMPORTED_MODULE_5__["DataService"] },
-        { type: _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSnackBar"] },
-        { type: _service_sound_service__WEBPACK_IMPORTED_MODULE_7__["SoundService"] }
+        { type: _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialog"] },
+        { type: _service_data_service__WEBPACK_IMPORTED_MODULE_4__["DataService"] },
+        { type: _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatSnackBar"] },
+        { type: _service_sound_service__WEBPACK_IMPORTED_MODULE_5__["SoundService"] }
     ]; };
     DashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1125,7 +974,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _service_data_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../service/data.service */ "./src/app/service/data.service.ts");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../confirm-dialog/confirm-dialog.component */ "./src/app/confirm-dialog/confirm-dialog.component.ts");
-/* harmony import */ var _app_constants__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../app.constants */ "./src/app/app.constants.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
 
 
 
@@ -1149,6 +998,7 @@ var MapComponent = /** @class */ (function () {
         this.snackBar = snackBar;
         this.dialog = dialog;
         this.zone = zone;
+        this.API_URL = _environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].API_URL;
         this.isAddAllowed = false;
         this.greenMarker = leaflet__WEBPACK_IMPORTED_MODULE_2__["icon"]({
             iconUrl: 'assets/marker-green.png',
@@ -1433,7 +1283,7 @@ var MapComponent = /** @class */ (function () {
         //   this.getLocation();
         // });
         // this.http.get(`https://outpassdashboard.desuung.org.bt/api/buildings?sub_zone_id=${zoneId}`).subscribe((json: any) => {
-        this.http.get(_app_constants__WEBPACK_IMPORTED_MODULE_8__["API_URL"] + "/get-buildings-json/" + zoneId).subscribe(function (json) {
+        this.http.get(this.API_URL + "/get-buildings-json/" + zoneId).subscribe(function (json) {
             _this.json = json;
             console.log(json);
             var geoJson = leaflet__WEBPACK_IMPORTED_MODULE_2__["geoJSON"](_this.json, {
@@ -1516,74 +1366,6 @@ var MapComponent = /** @class */ (function () {
         })
     ], MapComponent);
     return MapComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/modal/modal.component.scss":
-/*!********************************************!*\
-  !*** ./src/app/modal/modal.component.scss ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL21vZGFsLmNvbXBvbmVudC5zY3NzIn0= */"
-
-/***/ }),
-
-/***/ "./src/app/modal/modal.component.ts":
-/*!******************************************!*\
-  !*** ./src/app/modal/modal.component.ts ***!
-  \******************************************/
-/*! exports provided: ModalComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalComponent", function() { return ModalComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _service_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../service/data.service */ "./src/app/service/data.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-
-
-
-
-
-var ModalComponent = /** @class */ (function () {
-    function ModalComponent(dialogRef, snackBar, dataService, router) {
-        this.dialogRef = dialogRef;
-        this.snackBar = snackBar;
-        this.dataService = dataService;
-        this.router = router;
-        dialogRef.disableClose = true;
-        dialogRef.backdropClick().subscribe(function () {
-            dialogRef.disableClose = true;
-        });
-    }
-    ModalComponent.prototype.ngOnInit = function () {
-    };
-    ModalComponent.prototype.onCodeResult = function (resultString) {
-        this.dialogRef.close(resultString);
-        navigator.vibrate(200);
-    };
-    ModalComponent.ctorParameters = function () { return [
-        { type: _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"] },
-        { type: _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSnackBar"] },
-        { type: _service_data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] }
-    ]; };
-    ModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-modal',
-            template: __webpack_require__(/*! raw-loader!./modal.component.html */ "./node_modules/raw-loader/index.js!./src/app/modal/modal.component.html"),
-            styles: [__webpack_require__(/*! ./modal.component.scss */ "./src/app/modal/modal.component.scss")]
-        })
-    ], ModalComponent);
-    return ModalComponent;
 }());
 
 
@@ -2210,7 +1992,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _app_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../app.constants */ "./src/app/app.constants.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 
 
@@ -2224,11 +2006,12 @@ var IS_AUTHENTICATED = 'isAuthenticated';
 var AuthenticationService = /** @class */ (function () {
     function AuthenticationService(http) {
         this.http = http;
+        this.API_URL = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].API_URL;
         this.authState = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](false);
     }
     AuthenticationService.prototype.validateLogin = function (cid, password) {
         var _this = this;
-        return this.http.post(_app_constants__WEBPACK_IMPORTED_MODULE_4__["API_URL"] + "/login", {
+        return this.http.post(this.API_URL + "/login", {
             cid: cid,
             password: password
         }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (data) {
@@ -2305,7 +2088,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _app_constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../app.constants */ "./src/app/app.constants.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
 
 
 
@@ -2315,6 +2098,7 @@ __webpack_require__.r(__webpack_exports__);
 var DataService = /** @class */ (function () {
     function DataService(http) {
         this.http = http;
+        this.API_URL = _environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].API_URL;
         // Http Options
         this.httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
@@ -2343,82 +2127,82 @@ var DataService = /** @class */ (function () {
             password: pass
         };
         return this.http
-            .post(_app_constants__WEBPACK_IMPORTED_MODULE_5__["API_URL"] + "/login", user, this.httpOptions)
+            .post(this.API_URL + "/login", user, this.httpOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
     };
     DataService.prototype.getDzongkhags = function () {
         return this.http
-            .get(_app_constants__WEBPACK_IMPORTED_MODULE_5__["API_URL"] + "/get-all-dzo", this.httpOptions)
+            .get(this.API_URL + "/get-all-dzo", this.httpOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
     };
     DataService.prototype.getZones = function (dzongkhagId) {
         return this.http
-            .get(_app_constants__WEBPACK_IMPORTED_MODULE_5__["API_URL"] + "/get-zones/" + dzongkhagId, this.httpOptions)
+            .get(this.API_URL + "/get-zones/" + dzongkhagId, this.httpOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
     };
     DataService.prototype.getSubZones = function (zoneId) {
         return this.http
-            .get(_app_constants__WEBPACK_IMPORTED_MODULE_5__["API_URL"] + "/get-subzones/" + zoneId, this.httpOptions)
+            .get(this.API_URL + "/get-subzones/" + zoneId, this.httpOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
     };
     DataService.prototype.validateQRCode = function (requestType, uuid) {
         return this.http
-            .get(_app_constants__WEBPACK_IMPORTED_MODULE_5__["API_URL"] + "/validate-qr/" + requestType + "/" + uuid, this.httpOptions)
+            .get(this.API_URL + "/validate-qr/" + requestType + "/" + uuid, this.httpOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
     };
     DataService.prototype.postRegistration = function (item) {
         return this.http
-            .post(_app_constants__WEBPACK_IMPORTED_MODULE_5__["API_URL"] + "/household-details", item, this.httpOptions)
+            .post(this.API_URL + "/household-details", item, this.httpOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
     };
     DataService.prototype.postUpdateHouseHold = function (item, houseHoldId) {
         return this.http
-            .put(_app_constants__WEBPACK_IMPORTED_MODULE_5__["API_URL"] + "/household-details/" + houseHoldId, item, this.httpOptions)
+            .put(this.API_URL + "/household-details/" + houseHoldId, item, this.httpOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
     };
     DataService.prototype.postUnit = function (item) {
         return this.http
-            .post(_app_constants__WEBPACK_IMPORTED_MODULE_5__["API_URL"] + "/createunit", item, this.httpOptions)
+            .post(this.API_URL + "/createunit", item, this.httpOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
     };
     DataService.prototype.postHousehold = function (item) {
         return this.http
-            .post(_app_constants__WEBPACK_IMPORTED_MODULE_5__["API_URL"] + "/create-household", item, this.httpOptions)
+            .post(this.API_URL + "/create-household", item, this.httpOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
     };
     DataService.prototype.postShop = function (item) {
         return this.http
-            .post(_app_constants__WEBPACK_IMPORTED_MODULE_5__["API_URL"] + "/create-shop", item, this.httpOptions)
+            .post(this.API_URL + "/create-shop", item, this.httpOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
     };
     DataService.prototype.updateBuilding = function (item) {
         return this.http
-            .post(_app_constants__WEBPACK_IMPORTED_MODULE_5__["API_URL"] + "/updatebuilding", item, this.httpOptions)
+            .post(this.API_URL + "/updatebuilding", item, this.httpOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
     };
     DataService.prototype.uploadImg = function (item) {
         return this.http
-            .post(_app_constants__WEBPACK_IMPORTED_MODULE_5__["API_URL"] + "/upload-img", item, this.httpOptions)
+            .post(this.API_URL + "/upload-img", item, this.httpOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
     };
     DataService.prototype.postCompletion = function (buildingId) {
         return this.http
-            .post(_app_constants__WEBPACK_IMPORTED_MODULE_5__["API_URL"] + "/mark-building-completed/" + buildingId, '', this.httpOptions)
+            .post(this.API_URL + "/mark-building-completed/" + buildingId, '', this.httpOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
     };
     DataService.prototype.postAtms = function (items) {
         return this.http
-            .post(_app_constants__WEBPACK_IMPORTED_MODULE_5__["API_URL"] + "/create-bulk-atm", items, this.httpOptions)
+            .post(this.API_URL + "/create-bulk-atm", items, this.httpOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
     };
     DataService.prototype.postNewBuilding = function (item) {
         return this.http
-            .post(_app_constants__WEBPACK_IMPORTED_MODULE_5__["API_URL"] + "/buildings", item, this.httpOptions)
+            .post(this.API_URL + "/buildings", item, this.httpOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
     };
     DataService.prototype.postQRScan = function (item) {
         return this.http
-            .post(_app_constants__WEBPACK_IMPORTED_MODULE_5__["API_URL"] + "/scan", item, this.httpOptions)
+            .post(this.API_URL + "/scan", item, this.httpOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
     };
     DataService.ctorParameters = function () { return [
@@ -2593,187 +2377,6 @@ var SoundService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/update-household/update-household.component.scss":
-/*!******************************************************************!*\
-  !*** ./src/app/update-household/update-household.component.scss ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".my-form {\n  min-width: 150px;\n  max-width: 500px;\n  width: 100%;\n}\n\n.full-width {\n  width: 100%;\n}\n\n.menu-spacer {\n  -webkit-box-flex: 1;\n          flex: 1 1 auto;\n}\n\n.myLocation-button {\n  width: 42px;\n  border-radius: 23px;\n  height: 42px;\n  background: #ffffffa3;\n  margin-bottom: 20px;\n  border: none;\n}\n\n.leaflet-message {\n  margin-bottom: 20px;\n  font-size: 13px;\n  font-weight: bold;\n  color: white;\n  background-color: #df1515;\n  padding: 5px;\n  margin-right: 30px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdXBkYXRlLWhvdXNlaG9sZC9EOlxcUFJPSkVDVFNcXHpoaWNoYXJcXGZyb250ZW5kL3NyY1xcYXBwXFx1cGRhdGUtaG91c2Vob2xkXFx1cGRhdGUtaG91c2Vob2xkLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC91cGRhdGUtaG91c2Vob2xkL3VwZGF0ZS1ob3VzZWhvbGQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxnQkFBQTtFQUNBLGdCQUFBO0VBQ0EsV0FBQTtBQ0NGOztBREVBO0VBQ0UsV0FBQTtBQ0NGOztBREVBO0VBQ0UsbUJBQUE7VUFBQSxjQUFBO0FDQ0Y7O0FERUE7RUFDRSxXQUFBO0VBQ0EsbUJBQUE7RUFDQSxZQUFBO0VBQ0EscUJBQUE7RUFDQSxtQkFBQTtFQUNBLFlBQUE7QUNDRjs7QURFQTtFQUNFLG1CQUFBO0VBQ0EsZUFBQTtFQUNBLGlCQUFBO0VBQ0EsWUFBQTtFQUNBLHlCQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0FDQ0YiLCJmaWxlIjoic3JjL2FwcC91cGRhdGUtaG91c2Vob2xkL3VwZGF0ZS1ob3VzZWhvbGQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubXktZm9ybXtcbiAgbWluLXdpZHRoOiAxNTBweDtcbiAgbWF4LXdpZHRoOiA1MDBweDtcbiAgd2lkdGg6IDEwMCU7XG59XG5cbi5mdWxsLXdpZHRoIHtcbiAgd2lkdGg6IDEwMCU7XG59XG5cbi5tZW51LXNwYWNlciB7XG4gIGZsZXg6IDEgMSBhdXRvO1xufVxuXG4ubXlMb2NhdGlvbi1idXR0b24ge1xuICB3aWR0aDogNDJweDtcbiAgYm9yZGVyLXJhZGl1czogMjNweDtcbiAgaGVpZ2h0OiA0MnB4O1xuICBiYWNrZ3JvdW5kOiAjZmZmZmZmYTM7XG4gIG1hcmdpbi1ib3R0b206IDIwcHg7XG4gIGJvcmRlcjogbm9uZTtcbn1cblxuLmxlYWZsZXQtbWVzc2FnZSB7XG4gIG1hcmdpbi1ib3R0b206IDIwcHg7XG4gIGZvbnQtc2l6ZTogMTNweDtcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2RmMTUxNTtcbiAgcGFkZGluZzogNXB4O1xuICBtYXJnaW4tcmlnaHQ6IDMwcHg7XG59XG4iLCIubXktZm9ybSB7XG4gIG1pbi13aWR0aDogMTUwcHg7XG4gIG1heC13aWR0aDogNTAwcHg7XG4gIHdpZHRoOiAxMDAlO1xufVxuXG4uZnVsbC13aWR0aCB7XG4gIHdpZHRoOiAxMDAlO1xufVxuXG4ubWVudS1zcGFjZXIge1xuICBmbGV4OiAxIDEgYXV0bztcbn1cblxuLm15TG9jYXRpb24tYnV0dG9uIHtcbiAgd2lkdGg6IDQycHg7XG4gIGJvcmRlci1yYWRpdXM6IDIzcHg7XG4gIGhlaWdodDogNDJweDtcbiAgYmFja2dyb3VuZDogI2ZmZmZmZmEzO1xuICBtYXJnaW4tYm90dG9tOiAyMHB4O1xuICBib3JkZXI6IG5vbmU7XG59XG5cbi5sZWFmbGV0LW1lc3NhZ2Uge1xuICBtYXJnaW4tYm90dG9tOiAyMHB4O1xuICBmb250LXNpemU6IDEzcHg7XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xuICBjb2xvcjogd2hpdGU7XG4gIGJhY2tncm91bmQtY29sb3I6ICNkZjE1MTU7XG4gIHBhZGRpbmc6IDVweDtcbiAgbWFyZ2luLXJpZ2h0OiAzMHB4O1xufSJdfQ== */"
-
-/***/ }),
-
-/***/ "./src/app/update-household/update-household.component.ts":
-/*!****************************************************************!*\
-  !*** ./src/app/update-household/update-household.component.ts ***!
-  \****************************************************************/
-/*! exports provided: Qrcode, Household, UpdateHouseholdComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Qrcode", function() { return Qrcode; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Household", function() { return Household; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UpdateHouseholdComponent", function() { return UpdateHouseholdComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _service_data_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../service/data.service */ "./src/app/service/data.service.ts");
-/* harmony import */ var _confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../confirm-dialog/confirm-dialog.component */ "./src/app/confirm-dialog/confirm-dialog.component.ts");
-
-
-
-
-
-
-
-var Qrcode = /** @class */ (function () {
-    function Qrcode() {
-    }
-    return Qrcode;
-}());
-
-var Household = /** @class */ (function () {
-    function Household() {
-    }
-    return Household;
-}());
-
-var UpdateHouseholdComponent = /** @class */ (function () {
-    function UpdateHouseholdComponent(fb, route, dialog, dataService, router, snackBar) {
-        this.fb = fb;
-        this.route = route;
-        this.dialog = dialog;
-        this.dataService = dataService;
-        this.router = router;
-        this.snackBar = snackBar;
-        this.disableForm = true;
-        this.nationalities = [
-            { id: 'BHUTANESE', name: 'Bhutanese' },
-            { id: 'FOREIGN NATIONAL', name: 'Foreign National' }
-        ];
-        this.household = new Household();
-    }
-    UpdateHouseholdComponent.prototype.ngOnInit = function () {
-        this.buildingId = this.route.snapshot.params['id'];
-        this.reactiveForms();
-        this.getQRDetails();
-    };
-    UpdateHouseholdComponent.prototype.reactiveForms = function () {
-        this.updateForm = this.fb.group({
-            mobileNoControl: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(8), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(8)])],
-            totalMaleControl: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required])],
-            totalFemaleControl: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required])],
-            ageOverFiftyControl: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required])],
-            ageBelowTenControl: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required])],
-            nationalityControl: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required])],
-            emergencyMobileNoControl: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required])]
-        });
-    };
-    UpdateHouseholdComponent.prototype.getQRDetails = function () {
-        var _this = this;
-        var qrUUID = sessionStorage.getItem('qrUUID');
-        this.dataService.validateQRCode('scan', qrUUID).subscribe(function (response) {
-            console.log(response);
-            if (response.status_code === 'ACTIVE') {
-                _this.updateForm.controls.mobileNoControl.setValue(response.data.mobile_no);
-                _this.updateForm.controls.totalMaleControl.setValue(response.data.total_male);
-                _this.updateForm.controls.totalFemaleControl.setValue(response.data.total_female);
-                _this.updateForm.controls.ageOverFiftyControl.setValue(response.data.total_above_60);
-                _this.updateForm.controls.ageBelowTenControl.setValue(response.data.total_below_10);
-                _this.updateForm.controls.nationalityControl.setValue(response.data.nationality);
-                _this.updateForm.controls.emergencyMobileNoControl.setValue(response.data.emergency_contact_no);
-                _this.qrId = response.data.qr_code_id;
-                _this.houseHoldId = response.data.id;
-                _this.disableForm = false;
-            }
-            else if (response.status_code === 'INVALID') {
-                var confirmDialog = _this.dialog.open(_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_6__["ConfirmDialogComponent"], {
-                    data: {
-                        title: 'Alert!',
-                        message: 'The QR code is invalid. Please reissue a new QR code?'
-                    }
-                });
-                confirmDialog.afterClosed().subscribe(function (confirmResult) {
-                    if (confirmResult) {
-                        _this.router.navigate(['map']);
-                        sessionStorage.setItem('requestType', 'SCAN');
-                    }
-                });
-            }
-            else {
-                // tslint:disable-next-line: max-line-length
-                _this.snackBar.open('Scan failed, this QR Code has not been registered with any household. Please register it and then scan.', '', {
-                    duration: 5000,
-                    verticalPosition: 'top',
-                    panelClass: ['error-snackbar']
-                });
-            }
-        }, function (err) {
-            _this.snackBar.open('QR Code scan failed, please try again.', '', {
-                duration: 5000,
-                verticalPosition: 'top',
-                panelClass: ['error-snackbar']
-            });
-        });
-    };
-    UpdateHouseholdComponent.prototype.update = function () {
-        var _this = this;
-        this.household.mobile_no = this.updateForm.get('mobileNoControl').value;
-        this.household.total_male = this.updateForm.get('totalMaleControl').value;
-        this.household.total_female = this.updateForm.get('totalFemaleControl').value;
-        this.household.total_above_60 = this.updateForm.get('ageOverFiftyControl').value;
-        this.household.total_below_10 = this.updateForm.get('ageBelowTenControl').value;
-        this.household.nationality = this.updateForm.get('nationalityControl').value;
-        this.household.emergency_contact_no = this.updateForm.get('emergencyMobileNoControl').value;
-        this.household.id = this.houseHoldId;
-        this.household.building_id = this.buildingId;
-        this.household.qr_code_id = this.qrId;
-        this.household.user_id = Number(sessionStorage.getItem('userId'));
-        this.household._method = 'PUT';
-        console.log(JSON.stringify(this.household));
-        this.dataService.postUpdateHouseHold(this.household, this.houseHoldId).subscribe(function (response) {
-            _this.snackBar.open('Household detail update has been successfully done', '', {
-                duration: 5000,
-                verticalPosition: 'top',
-                panelClass: ['success-snackbar']
-            });
-            _this.updateForm.reset();
-            _this.router.navigate(['dashboard']);
-        }, function (error) {
-            _this.snackBar.open('Household detail update failed, please try again', '', {
-                duration: 5000,
-                verticalPosition: 'top',
-                panelClass: ['error-snackbar']
-            });
-            _this.disableForm = true;
-        });
-    };
-    UpdateHouseholdComponent.ctorParameters = function () { return [
-        { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"] },
-        { type: _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialog"] },
-        { type: _service_data_service__WEBPACK_IMPORTED_MODULE_5__["DataService"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
-        { type: _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSnackBar"] }
-    ]; };
-    UpdateHouseholdComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-update-household',
-            template: __webpack_require__(/*! raw-loader!./update-household.component.html */ "./node_modules/raw-loader/index.js!./src/app/update-household/update-household.component.html"),
-            styles: [__webpack_require__(/*! ./update-household.component.scss */ "./src/app/update-household/update-household.component.scss")]
-        })
-    ], UpdateHouseholdComponent);
-    return UpdateHouseholdComponent;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/upload-image/upload-image.component.scss":
 /*!**********************************************************!*\
   !*** ./src/app/upload-image/upload-image.component.scss ***!
@@ -2890,7 +2493,8 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 var environment = {
-    production: false
+    production: false,
+    API_URL: 'http://localhost:8000'
 };
 /*
  * For easier debugging in development mode, you can import the following file

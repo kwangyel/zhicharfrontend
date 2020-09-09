@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { API_URL } from '../app.constants';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+  API_URL = environment.API_URL;
 
   constructor(
     private http: HttpClient
@@ -44,7 +45,7 @@ export class DataService {
     };
 
     return this.http
-      .post<any>(`${API_URL}/login`, user, this.httpOptions)
+      .post<any>(`${this.API_URL}/login`, user, this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
@@ -52,7 +53,7 @@ export class DataService {
 
   getDzongkhags() {
     return this.http
-      .get<any>(`${API_URL}/get-all-dzo`, this.httpOptions)
+      .get<any>(`${this.API_URL}/get-all-dzo`, this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
@@ -60,7 +61,7 @@ export class DataService {
 
   getZones(dzongkhagId) {
     return this.http
-      .get<any>(`${API_URL}/get-zones/${dzongkhagId}`, this.httpOptions)
+      .get<any>(`${this.API_URL}/get-zones/${dzongkhagId}`, this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
@@ -68,7 +69,7 @@ export class DataService {
 
   getSubZones(zoneId) {
     return this.http
-      .get<any>(`${API_URL}/get-subzones/${zoneId}`, this.httpOptions)
+      .get<any>(`${this.API_URL}/get-subzones/${zoneId}`, this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
@@ -76,7 +77,7 @@ export class DataService {
 
   validateQRCode(requestType, uuid) {
     return this.http
-      .get<any>(`${API_URL}/validate-qr/${requestType}/${uuid}`, this.httpOptions)
+      .get<any>(`${this.API_URL}/validate-qr/${requestType}/${uuid}`, this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
@@ -84,7 +85,7 @@ export class DataService {
 
   postRegistration(item) {
     return this.http
-      .post(`${API_URL}/household-details`, item, this.httpOptions)
+      .post(`${this.API_URL}/household-details`, item, this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
@@ -92,42 +93,42 @@ export class DataService {
 
   postUpdateHouseHold(item, houseHoldId) {
     return this.http
-      .put(`${API_URL}/household-details/${houseHoldId}`, item, this.httpOptions)
+      .put(`${this.API_URL}/household-details/${houseHoldId}`, item, this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
   postUnit(item){
     return this.http
-      .post<any>(`${API_URL}/createunit`,item,this.httpOptions)
+      .post<any>(`${this.API_URL}/createunit`,item,this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
   postHousehold(item){
     return this.http
-      .post<any>(`${API_URL}/create-household`,item,this.httpOptions)
+      .post<any>(`${this.API_URL}/create-household`,item,this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
   postShop(item){
     return this.http
-      .post<any>(`${API_URL}/create-shop`,item,this.httpOptions)
+      .post<any>(`${this.API_URL}/create-shop`,item,this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
   updateBuilding(item){
     return this.http
-      .post<any>(`${API_URL}/updatebuilding`,item,this.httpOptions)
+      .post<any>(`${this.API_URL}/updatebuilding`,item,this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
   uploadImg(item){
     return this.http
-      .post<any>(`${API_URL}/upload-img`,item,this.httpOptions)
+      .post<any>(`${this.API_URL}/upload-img`,item,this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
@@ -135,7 +136,7 @@ export class DataService {
 
   postCompletion(buildingId) {
     return this.http
-      .post(`${API_URL}/mark-building-completed/${buildingId}`, '', this.httpOptions)
+      .post(`${this.API_URL}/mark-building-completed/${buildingId}`, '', this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
@@ -143,14 +144,14 @@ export class DataService {
 
   postAtms(items){
     return this.http
-      .post(`${API_URL}/create-bulk-atm`,items,this.httpOptions)
+      .post(`${this.API_URL}/create-bulk-atm`,items,this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
   postNewBuilding(item) {
     return this.http
-      .post<any>(`${API_URL}/buildings`, item, this.httpOptions)
+      .post<any>(`${this.API_URL}/buildings`, item, this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
@@ -158,7 +159,7 @@ export class DataService {
 
   postQRScan(item) {
     return this.http
-      .post<any>(`${API_URL}/scan`, item, this.httpOptions)
+      .post<any>(`${this.API_URL}/scan`, item, this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );

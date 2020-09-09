@@ -30,9 +30,7 @@ import { MatListModule } from '@angular/material/list';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { MapComponent } from './map/map.component';
-import { ModalComponent } from './modal/modal.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import { UpdateHouseholdComponent } from './update-household/update-household.component';
 import { RegisterUnitComponent } from './register-unit/register-unit.component';
 import { CameraComponent } from './camera/camera.component';
 import {WebcamModule} from 'ngx-webcam';
@@ -48,9 +46,7 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
     DashboardComponent,
     ChangePasswordComponent,
     MapComponent,
-    ModalComponent,
     ConfirmDialogComponent,
-    UpdateHouseholdComponent,
     RegisterUnitComponent,
     CameraComponent,
     UploadImageComponent,
@@ -85,6 +81,6 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  entryComponents: [ModalComponent, ConfirmDialogComponent]
+  entryComponents: [ ConfirmDialogComponent]
 })
 export class AppModule { }

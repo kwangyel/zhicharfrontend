@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { ModalComponent } from '../modal/modal.component';
 import { DataService } from '../service/data.service';
 
 interface Nationality {
