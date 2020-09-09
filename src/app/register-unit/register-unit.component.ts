@@ -100,7 +100,10 @@ export class RegisterUnitComponent implements OnInit {
     this.dataService.updateBuilding(this.buildingData).subscribe(response=>{
       if(response.success === "true"){
         if(atmdata.length > 0){
-          this.registerAtm(atmdata);
+          let jsonobjet = {
+            "atms":atmdata
+          }
+          this.registerAtm(jsonobjet);
         }
         this.router.navigate(['dashboard',this.buildingId]);
         this.snackBar.open('Building registered', '', {
@@ -127,7 +130,7 @@ export class RegisterUnitComponent implements OnInit {
 
   registerAtm(atms){
     this.dataService.postAtms(atms).subscribe(response=>{
-      if(response.success === "true"){
+      if(response['success'] === "true"){
         this.router.navigate(['dashboard',this.buildingId]);
         this.snackBar.open('Building registered', '', {
           duration: 5000,
