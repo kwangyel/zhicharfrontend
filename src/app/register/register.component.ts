@@ -181,6 +181,7 @@ export class RegisterComponent implements OnInit {
     if(this.unitUse == 'Others'){
       this.unitUse = this.unitform.get('otherUnitUseControl').value;
     }
+    this.unit.use = this.unitUse;
 
     this.dataService.postUnit(this.unit).subscribe(response=>{
       if(response.success === "true"){
