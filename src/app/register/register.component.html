@@ -25,6 +25,11 @@
           <mat-label>Specify other unit use</mat-label>
           <input matInput type="text" name="otheruse" formControlName="otherUnitUseControl" required min="0" required autofocus>
         </mat-form-field>
+
+        <mat-form-field class="justifier">
+          <mat-label>Remarks</mat-label>
+          <input matInput type="text" name="unitid" formControlName="remarksControl" required min="0" [readonly]="disableForm" autofocus>
+        </mat-form-field>
       </form>
       <form [formGroup]="shopform" *ngIf="displayShopForm">
         <mat-form-field class="justifier">

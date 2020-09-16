@@ -23,6 +23,8 @@ export class Unit{
   unit_name : string;
   use: string;
   building_id: number;
+  remarks: string;
+  user_id:number;
 }
 
 export class Shop{
@@ -137,6 +139,7 @@ export class RegisterComponent implements OnInit {
       unitTypeControl: [],
       unitIdControl:[],
       otherUnitUseControl:[],
+      remarksControl:[],
     });
     this.ageGender = this.fb.group({
       male10Control :[],
@@ -178,10 +181,13 @@ export class RegisterComponent implements OnInit {
   registerUnit(){
     this.unit.unit_name = this.unitform.get('unitIdControl').value;
     this.unit.building_id = Number(sessionStorage.getItem('buildingId'));
+    this.unit.remarks = this.unitform.get('remarksControl').value;
+
     if(this.unitUse == 'Others'){
       this.unitUse = this.unitform.get('otherUnitUseControl').value;
     }
     this.unit.use = this.unitUse;
+    this.unit.user_id = Number(sessionStorage.getItem('userId'));
 
     this.dataService.postUnit(this.unit).subscribe(response=>{
       if(response.success === "true"){

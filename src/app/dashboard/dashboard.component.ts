@@ -61,7 +61,7 @@ export class DashboardComponent implements OnInit {
   }
   markcomplete(){
     this.dataService.postCompletion(sessionStorage.getItem('buildingId')).subscribe(response=>{
-      if(response['success'] == "true"){
+      if(response['success'] === "true"){
           this.snackBar.open('building Marked Complete' , '', {
             duration: 3000,
             verticalPosition: 'top',
