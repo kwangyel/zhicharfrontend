@@ -45,12 +45,11 @@ export class RegisterUnitComponent implements OnInit {
   uses: BuildingUse[] = [
     {id:'1', name:"Residential"},
     {id:'2', name:"Commercial"},
-    {id:'3', name:"Mixed User"},
+    {id:'3', name:"Mixed Used"},
     {id:'4', name:"Institution"},
     {id:'5', name:"School"},
     {id:'6', name:"Religious"},
     {id:'7', name:"Hospital"},
-    {id:'8', name:"Religious"},
     {id:'9', name:"Others"},
   ]
 
@@ -149,10 +148,10 @@ export class RegisterUnitComponent implements OnInit {
 
   reactiveForms() {
     this.buildingform= this.fb.group({
-      buildingNameControl: [''],
-      ownerNameControl: [''],
-      contactControl: [''],
-      otherUseControl: ['']
+      buildingNameControl: [],
+      ownerNameControl: [],
+      contactControl: [],
+      otherUseControl: []
     });
   }
 }

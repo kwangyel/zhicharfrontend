@@ -59,9 +59,9 @@ export class UploadImageComponent implements OnInit {
             panelClass: ['error-snackbar']
           });
         }
-    })
+      })
+    }
   }
-}
 
   handleImage(webcamImage: WebcamImage) {
     this.webcamImage = webcamImage;

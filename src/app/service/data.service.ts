@@ -151,17 +151,11 @@ export class DataService {
   }
   postNewBuilding(item) {
     return this.http
-      .post<any>(`${this.API_URL}/buildings`, item, this.httpOptions)
+      .post<any>(`${this.API_URL}/createbuilding`, item, this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  postQRScan(item) {
-    return this.http
-      .post<any>(`${this.API_URL}/scan`, item, this.httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
+ 
 }

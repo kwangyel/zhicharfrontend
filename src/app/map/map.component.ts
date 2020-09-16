@@ -21,11 +21,13 @@ export class Building {
 export class MapComponent implements OnInit {
 
   API_URL = environment.API_URL;
+  BASE_URL = environment.BASE_URL;
 
   latitude: number;
   longitude: number;
   accuracy: number;
   json: any;
+  bound: any;
   buildingId: number;
   isAddAllowed = false;
   building: Building;
@@ -106,18 +108,6 @@ export class MapComponent implements OnInit {
           }).addTo(this.map);
           this.map.flyTo([this.latitude, this.longitude], 19);
         }
-
-        // myMarker = L.marker([this.latitude, this.longitude], {icon: iconDefault}).addTo(this.map)
-        // .bindPopup('You are here')
-        // .openPopup();
-        // myCircle = L.circle([this.latitude, this.longitude], {
-        //   color: '#3498db',
-        //   fillColor: '#3498db',
-        //   fillOpacity: 0.5,
-        //   radius: position.coords.accuracy
-        // }).addTo(this.map);
-
-        // this.map.flyTo([this.latitude, this.longitude], 19);
       }, error => {
         console.error('No support for geolocation');
       }, options);
@@ -168,17 +158,6 @@ export class MapComponent implements OnInit {
             this.map.flyTo([this.latitude, this.longitude], 19);
           }
 
-          // L.marker([this.latitude, this.longitude], {icon: iconDefault}).addTo(this.map)
-          // .bindPopup('You are here')
-          // .openPopup();
-          // L.circle([this.latitude, this.longitude], {
-          //   color: '#3498db',
-          //   fillColor: '#3498db',
-          //   fillOpacity: 0.5,
-          //   radius: position.coords.accuracy
-          // }).addTo(this.map);
-
-          // this.map.flyTo([this.latitude, this.longitude], 19);
         }, err => {
           if (err.code === 0) {
             this.snackBar.open('Couldnot pull your location, please try again later', '', {
@@ -210,61 +189,6 @@ export class MapComponent implements OnInit {
             }
         }, options);
 
-        // this.watchId = navigator.geolocation.watchPosition(location => {
-        //   if (location) {
-        //     this.zone.run(() => {
-        //       this.latitude = location.coords.latitude;
-        //       this.longitude = location.coords.longitude;
-        //       this.accuracy = location.coords.accuracy;
-
-        //       if (this.accuracy > 100) {
-        //         L.marker([this.latitude, this.longitude], {icon: iconDefault}).addTo(this.map)
-        //         .bindPopup('You are here')
-        //         .openPopup();
-        //         this.map.flyTo([this.latitude, this.longitude], 19);
-        //         navigator.geolocation.clearWatch(this.watchId);
-        //       } else {
-        //         L.marker([this.latitude, this.longitude], {icon: iconDefault}).addTo(this.map)
-        //         .bindPopup('You are here')
-        //         .openPopup();
-        //         L.circle([this.latitude, this.longitude], {
-        //           color: '#3498db',
-        //           fillColor: '#3498db',
-        //           fillOpacity: 0.3,
-        //           radius: this.accuracy
-        //         }).addTo(this.map);
-
-        //         this.map.flyTo([this.latitude, this.longitude], 19);
-        //         navigator.geolocation.clearWatch(this.watchId);
-        //       }
-        //     });
-        //   }
-        // }, err => {
-        //   if (err.code === 0) {
-        //     this.snackBar.open('Couldnot pull your location, please try again later', '', {
-        //       verticalPosition: 'top',
-        //       duration: 3000
-        //     });
-        //   }
-        //   if (err.code === 1) {
-        //     this.snackBar.open('Location service is disabled, please enable it and try again', '', {
-        //       verticalPosition: 'top',
-        //       duration: 3000
-        //     });
-        //   }
-        //   if (err.code === 2) {
-        //     this.snackBar.open('Your location couldnot be determined', '', {
-        //       verticalPosition: 'top',
-        //       duration: 3000
-        //     });
-        //   }
-        //   if (err.code === 3) {
-        //     this.snackBar.open('Couldnot get your location', '', {
-        //       verticalPosition: 'top',
-        //       duration: 3000
-        //     });
-        //   }
-        // });
     } else {
        console.error('No support for geolocation');
     }
@@ -313,32 +237,17 @@ export class MapComponent implements OnInit {
 
   onMapReady(map: L.Map) {
     const zoneId = Number(sessionStorage.getItem('subZoneId'));
-    // this.http.get(`assets/geojson/${zoneId}.geojson`).subscribe((json: any) => {
-    //   console.log(json);
-    //   this.json = json;
-    //   const geoJson = L.geoJSON(this.json, {
-    //     onEachFeature: (feature, layer) => {
-    //         layer.on('click', (e) => {
-    //           this.buildingId = feature.properties.id;
-    //           if (sessionStorage.getItem('transactionType') === 'registration') {
-    //             this.router.navigate(['register', this.buildingId]);
-    //           } else {
-    //             this.router.navigate(['update-household', this.buildingId]);
-    //           }
-    //           this.snackBar.open('Building number ' + this.buildingId + ' was successfully selected', '', {
-    //             duration: 3000,
-    //             verticalPosition: 'top'
-    //           });
-    //         });
-    //       }, pointToLayer: (feature, latLng) => {
-    //         if (feature.properties.status === 'COMPLETED') {
-    //           return L.marker(latLng, {icon: this.greenMarker});
-    //         } else {
-    //           return L.marker(latLng, {icon: this.redMarker});
-    //         }
-    //       }
-    //     }).addTo(map);
-    //   map.fitBounds(geoJson.getBounds());
+    const geojson = this.http.get(`${this.BASE_URL}/assets/geojson/conv_T${zoneId}.geojson`).subscribe((json:any)=>{
+      this.bound= L.geoJSON(json,{
+        style: (feature)=>{
+          return {
+            color:"red",
+            fillOpacity:0
+          }
+        }
+      }).addTo(this.map);
+      this.map.fitBounds(this.bound.getBounds());
+    })
 
     //   this.getLocation();
     // });
@@ -352,13 +261,20 @@ export class MapComponent implements OnInit {
         onEachFeature: (feature, layer) => {
             layer.on('click', (e) => {
               this.buildingId = feature.properties.building_id;
-              this.router.navigate(['dashboard', this.buildingId]);
-              // this.router.navigate(['dashboard'])
-              this.snackBar.open('Building number ' + this.buildingId + ' was successfully selected', '', {
-                duration: 5000,
-                verticalPosition: 'top',
-                panelClass: ['success-snackbar']
-              });
+              if(feature.properties.status === "INCOMPLETE"){
+                this.router.navigate(['dashboard', this.buildingId]);
+                this.snackBar.open('Building number ' + this.buildingId + ' was successfully selected', '', {
+                  duration: 5000,
+                  verticalPosition: 'top',
+                  panelClass: ['success-snackbar']
+                });
+              }else{
+                this.snackBar.open('Building marked complete. Cannot edit', '', {
+                  duration: 5000,
+                  verticalPosition: 'top',
+                  panelClass: ['error-snackbar']
+                });
+              }
             });
           }, pointToLayer: (feature, latLng) => {
             if(feature.properties.status == 'INCOMPLETE'){
@@ -368,8 +284,6 @@ export class MapComponent implements OnInit {
             }
           }
         }).addTo(map);
-      map.fitBounds(geoJson.getBounds());
-      this.getLocation();
     });
   }
 
@@ -393,23 +307,19 @@ export class MapComponent implements OnInit {
       if (result === true) {
         this.building.lat = latlng.lat;
         this.building.lng = latlng.lng;
-        this.building.sub_zone_id = Number(sessionStorage.getItem('zoneId'));
+        this.building.sub_zone_id = Number(sessionStorage.getItem('subZoneId'));
         this.dataService.postNewBuilding(this.building).subscribe(response => {
           console.log(response);
           this.buildingId = response.data.id;
-
           this.snackBar.open('Building number ' + this.buildingId + ' has been successfully identified', '', {
             duration: 3000,
             verticalPosition: 'top',
             panelClass: ['success-snackbar']
           });
-          if (sessionStorage.getItem('transactionType') === 'registration') {
-            this.router.navigate(['register', this.buildingId]);
-          } else {
-            this.router.navigate(['update-household', this.buildingId]);
-          }
+          this.router.navigate(['dashboard', this.buildingId]);
         });
       }
     });
   }
+  
 }

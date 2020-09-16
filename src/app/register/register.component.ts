@@ -124,27 +124,27 @@ export class RegisterComponent implements OnInit {
   reactiveForms() {
     this.registerForm = this.fb.group({
       mobileNoControl: ['', Validators.compose([Validators.required, Validators.maxLength(8), Validators.minLength(8)])],
-      householdControl: ['' ],
-      diffabledControl: ['' ],
+      householdControl: [ ],
+      diffabledControl: [ ],
     });
     this.shopform = this.fb.group({
-      shopTypeControl:[''],
-      shopNameControl: [''],
-      shopPhControl: [''],
-      otherShopControl: ['']
+      shopTypeControl:[],
+      shopNameControl: [],
+      shopPhControl: [],
+      otherShopControl: []
     });
     this.unitform = this.fb.group({
-      unitTypeControl: [''],
-      unitIdControl:[''],
-      otherUnitUseControl:[''],
+      unitTypeControl: [],
+      unitIdControl:[],
+      otherUnitUseControl:[],
     });
     this.ageGender = this.fb.group({
-      male10Control :[''],
-      male1060Control :[''],
-      male60Control :[''],
-      female10Control :[''],
-      female1060Control :[''],
-      female60Control :[''],
+      male10Control :[],
+      male1060Control :[],
+      male60Control :[],
+      female10Control :[],
+      female1060Control :[],
+      female60Control :[],
     });
   }
 

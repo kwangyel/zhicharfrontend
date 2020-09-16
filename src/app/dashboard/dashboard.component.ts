@@ -59,6 +59,23 @@ export class DashboardComponent implements OnInit {
     sessionStorage.setItem('transactionType', 'update');
     this.router.navigate(['map']);
   }
+  markcomplete(){
+    this.dataService.postCompletion(sessionStorage.getItem('buildingId')).subscribe(response=>{
+      if(response['success'] ==true){
+          this.snackBar.open('building Marked Complete' , '', {
+            duration: 3000,
+            verticalPosition: 'top',
+            panelClass: ['success-snackbar']
+          });
+      }else{
+          this.snackBar.open('Could not mark Complete' , '', {
+            duration: 3000,
+            verticalPosition: 'top',
+            panelClass: ['success-snackbar']
+          });
+      }
+    })   
+  }
   // unit(){
   //   this.router.navigate([])
   // }
