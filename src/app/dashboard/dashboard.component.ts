@@ -26,6 +26,7 @@ export class DashboardComponent implements OnInit {
   longitude: number;
   latitude: number;
   accuracy: number;
+  units = [];
 
   constructor(
     private router: Router,
@@ -39,7 +40,27 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    sessionStorage.setItem('buildingId',this.route.snapshot.params['id'])
+    sessionStorage.setItem('buildingId',this.route.snapshot.params['id']);
+    this.getUnits(sessionStorage.getItem('buildingId'));
+  }
+  getUnits(bid){
+    this.dataService.getUnits(bid).subscribe(response=>{
+      if(response['success']=="true"){
+        this.units=response['data'];
+      }else if(response['success']=="false"){
+          this.snackBar.open('no units for this buildings' , '', {
+            duration: 2000,
+            verticalPosition: 'top',
+            panelClass: ['success-snackbar']
+          });
+      }else{
+          this.snackBar.open('error retrieving units' , '', {
+            duration: 2000,
+            verticalPosition: 'top',
+            panelClass: ['success-snackbar']
+          });
+      }
+    }) 
   }
 
   redirect(path) {
@@ -60,21 +81,32 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['map']);
   }
   markcomplete(){
-    this.dataService.postCompletion(sessionStorage.getItem('buildingId')).subscribe(response=>{
-      if(response['success'] === "true"){
-          this.snackBar.open('building Marked Complete' , '', {
-            duration: 3000,
-            verticalPosition: 'top',
-            panelClass: ['success-snackbar']
-          });
-      }else{
-          this.snackBar.open('Could not mark Complete' , '', {
-            duration: 3000,
-            verticalPosition: 'top',
-            panelClass: ['success-snackbar']
-          });
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent,{
+      data:{
+        title: "Confirm Mark Complete",
+        message: "Are you sure you want to mark building as complete?"
       }
-    })   
+    });
+    confirmDialog.afterClosed().subscribe(result=>{
+      if(result == true){
+        this.dataService.postCompletion(sessionStorage.getItem('buildingId')).subscribe(response=>{
+          if(response['success'] === "true"){
+              this.router.navigate(['map']);
+              this.snackBar.open('building Marked Complete' , '', {
+                duration: 3000,
+                verticalPosition: 'top',
+                panelClass: ['success-snackbar']
+              });
+          }else{
+              this.snackBar.open('Could not mark Complete' , '', {
+                duration: 3000,
+                verticalPosition: 'top',
+                panelClass: ['success-snackbar']
+              });
+          }
+        })   
+      }
+    });
   }
   // unit(){
   //   this.router.navigate([])

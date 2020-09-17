@@ -141,6 +141,20 @@ export class DataService {
         catchError(this.handleError)
       );
   }
+  postProgress(buildingId){
+    return this.http
+      .get(`${this.API_URL}/mark-progress/${buildingId}`,this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+  getUnits(buildingId){
+    return this.http
+      .get(`${this.API_URL}/getunits/${buildingId}`,this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
 
   postAtms(items){
     return this.http

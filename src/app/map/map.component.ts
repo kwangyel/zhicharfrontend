@@ -32,6 +32,8 @@ export class MapComponent implements OnInit {
   isAddAllowed = false;
   building: Building;
   watchId;
+  mylocation: L.Marker;
+  mycircle: L.Circle;
 
   map: L.Map;
 
@@ -44,6 +46,11 @@ export class MapComponent implements OnInit {
     iconUrl: 'assets/marker-red.png',
     iconSize: [15, 15]
   });
+  
+  yellowMarker = L.icon({
+    iconUrl: 'assets/marker-yellow.png',
+    iconSize: [15,15]
+  })
 
   myMarker = L.icon({
     iconUrl: 'assets/marker-icon.png',
@@ -65,53 +72,56 @@ export class MapComponent implements OnInit {
     this.renderMap();
   }
 
-  getMyLocation() {
-    if (navigator.geolocation) {
-      const iconRetinaUrl = 'assets/mymarker.png';
-      const iconUrl = 'assets/mymarker.png';
-      const iconDefault = L.icon({
-        iconRetinaUrl,
-        iconUrl,
-        iconSize: [20, 20],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        tooltipAnchor: [16, -28],
-        shadowSize: [41, 41]
-      });
+  // getMyLocation() {
+  //   if (navigator.geolocation) {
+  //     const iconRetinaUrl = 'assets/mymarker.png';
+  //     const iconUrl = 'assets/mymarker.png';
+  //     const iconDefault = L.icon({
+  //       iconRetinaUrl,
+  //       iconUrl,
+  //       iconSize: [20, 20],
+  //       iconAnchor: [12, 41],
+  //       popupAnchor: [1, -34],
+  //       tooltipAnchor: [16, -28],
+  //       shadowSize: [41, 41]
+  //     });
 
-      const options = {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-      };
+  //     const options = {
+  //       enableHighAccuracy: true,
+  //       timeout: 5000,
+  //       maximumAge: 0
+  //     };
 
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.longitude = position.coords.longitude;
-        this.latitude = position.coords.latitude;
-        this.accuracy = position.coords.accuracy;
+  //     navigator.geolocation.getCurrentPosition((position) => {
+  //       this.longitude = position.coords.longitude;
+  //       this.latitude = position.coords.latitude;
+  //       this.accuracy = position.coords.accuracy;
 
-        if (this.accuracy > 100) {
-          L.marker([this.latitude, this.longitude], {icon: iconDefault}).addTo(this.map)
-          .bindPopup('You are here')
-          .openPopup();
-          this.map.flyTo([this.latitude, this.longitude], 19);
-          navigator.geolocation.clearWatch(this.watchId);
-        } else {
-          L.marker([this.latitude, this.longitude], {icon: iconDefault}).addTo(this.map)
-          .bindPopup('You are here')
-          .openPopup();
-          L.circle([this.latitude, this.longitude], {
-            color: '#3498db',
-            fillColor: '#3498db',
-            fillOpacity: 0.3,
-            radius: this.accuracy
-          }).addTo(this.map);
-          this.map.flyTo([this.latitude, this.longitude], 19);
-        }
-      }, error => {
-        console.error('No support for geolocation');
-      }, options);
-    }
+  //       if (this.accuracy > 100) {
+  //         L.marker([this.latitude, this.longitude], {icon: iconDefault}).addTo(this.map)
+  //         .bindPopup('You are here')
+  //         .openPopup();
+  //         this.map.flyTo([this.latitude, this.longitude], 19);
+  //         navigator.geolocation.clearWatch(this.watchId);
+  //       } else {
+  //         L.marker([this.latitude, this.longitude], {icon: iconDefault}).addTo(this.map)
+  //         .bindPopup('You are here')
+  //         .openPopup();
+  //         L.circle([this.latitude, this.longitude], {
+  //           color: '#3498db',
+  //           fillColor: '#3498db',
+  //           fillOpacity: 0.3,
+  //           radius: this.accuracy
+  //         }).addTo(this.map);
+  //         this.map.flyTo([this.latitude, this.longitude], 19);
+  //       }
+  //     }, error => {
+  //       console.error('No support for geolocation');
+  //     });
+  //   }
+  // }
+  getMyLocation(){
+    this.map.locate({setView:true,watch:true,enableHighAccuracy:true});
   }
 
   getLocation(): void {
@@ -128,11 +138,11 @@ export class MapComponent implements OnInit {
           shadowSize: [41, 41]
         });
 
-        const options = {
-          enableHighAccuracy: true,
-          timeout: 5000,
-          maximumAge: 0
-        };
+        // const options = {
+        //   enableHighAccuracy: true,
+        //   timeout: 5000,
+        //   maximumAge: 0
+        // };
 
         navigator.geolocation.getCurrentPosition((position) => {
           this.longitude = position.coords.longitude;
@@ -187,41 +197,118 @@ export class MapComponent implements OnInit {
                 panelClass: ['error-snackbar']
               });
             }
-        }, options);
+        } );
 
     } else {
        console.error('No support for geolocation');
     }
   }
 
-  renderMap() {
-    this.map = L.map('map').setView([89.64191, 27.4712], 13);
-    const tiles = L.tileLayer('https://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}', {
+  // renderMap() {
+  //   this.map = L.map('map').setView([89.64191, 27.4712], 13);
+  //   const tiles = L.tileLayer('https://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}', {
+  //     maxZoom: 20,
+  //     minZoom: 13,
+  //     attribution: ''
+  //   });
+  //   tiles.addTo(this.map);
+
+  //   const streeTile = L.tileLayer.wms('http://{s}.myhome.bt:8080/geoserver/bhutan/wms', {
+  //     layers: 'bhutan:street_11august',
+  //     maxZoom: 20,
+  //     minZoom: 13,
+  //     format: 'image/png',
+  //     transparent: true
+  //   });
+  //   streeTile.addTo(this.map);
+
+  //   const bldgTile = L.tileLayer.wms('http://{s}.myhome.bt:8080/geoserver/bhutan/wms', {
+  //     layers: 'bhutan:building_numbers_11august',
+  //     maxZoom: 20,
+  //     minZoom: 13,
+  //     format: 'image/png',
+  //     transparent: true
+  //   });
+  //   bldgTile.addTo(this.map);
+
+  //   this.onMapReady(this.map);
+
+  //   let newMarker: any;
+  //   this.map.on('click', <LeafletMouseEvent>($e) => {
+  //     if (this.isAddAllowed) {
+  //       if (newMarker !== undefined) {
+  //         this.map.removeLayer(newMarker);
+  //       }
+  //       newMarker = L.marker($e.latlng, {icon: this.myMarker}).addTo(this.map);
+  //       this.presentAlert($e.latlng);
+  //     }
+  //   });
+  // }
+
+  renderMap(){
+    var sat = L.tileLayer('https://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}', {
       maxZoom: 20,
       minZoom: 13,
-      attribution: ''
     });
-    tiles.addTo(this.map);
-
-    const streeTile = L.tileLayer.wms('http://{s}.myhome.bt:8080/geoserver/bhutan/wms', {
-      layers: 'bhutan:street_11august',
+    var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       maxZoom: 20,
       minZoom: 13,
-      format: 'image/png',
-      transparent: true
     });
-    streeTile.addTo(this.map);
-
-    const bldgTile = L.tileLayer.wms('http://{s}.myhome.bt:8080/geoserver/bhutan/wms', {
-      layers: 'bhutan:building_numbers_11august',
-      maxZoom: 20,
-      minZoom: 13,
-      format: 'image/png',
-      transparent: true
+    this.map = L.map('map',{
+      center:[27.4712,89.64191],
+      zoom: 13,
+      layers: [sat]
     });
-    bldgTile.addTo(this.map);
+    var baseMaps = {
+      "Satellite Image": sat,
+      "OSM base map": osm 
+    };
 
+    L.control.layers(baseMaps,null,{position:"bottomleft"}).addTo(this.map);
     this.onMapReady(this.map);
+
+    this.map.on('locationerror',(err)=>{
+          if (err.code === 0) {
+            this.snackBar.open('Couldnot pull your location, please try again later', '', {
+              verticalPosition: 'top',
+              duration: 3000
+            });
+          }
+          if (err.code === 1) {
+            this.snackBar.open('Location service is disabled, please enable it and try again', '', {
+              verticalPosition: 'top',
+              duration: 3000
+            });
+          }
+          if (err.code === 2) {
+            this.snackBar.open('Your location couldnot be determined', '', {
+              verticalPosition: 'top',
+              duration: 3000
+            });
+          }
+          if (err.code === 3) {
+              this.snackBar.open('Couldnot get your location', '', {
+                verticalPosition: 'top',
+                duration: 3000
+              });
+            }
+    });
+
+    this.map.on('locationfound',(e)=>{
+      var radius = e.accuracy;
+      if(this.mylocation !== undefined){
+        this.map.removeLayer(this.mylocation);
+      }
+      this.mylocation = L.marker(e.latlng,{icon: this.myMarker}).addTo(this.map);
+
+      if(radius<100){
+        if(this.mycircle !== undefined){
+          this.map.removeLayer(this.mycircle);
+        }
+        this.mycircle = L.circle(e.latlng,radius).addTo(this.map);
+      }
+    });
+
 
     let newMarker: any;
     this.map.on('click', <LeafletMouseEvent>($e) => {
@@ -249,11 +336,6 @@ export class MapComponent implements OnInit {
       this.map.fitBounds(this.bound.getBounds());
     })
 
-    //   this.getLocation();
-    // });
-
-    // this.http.get(`https://outpassdashboard.desuung.org.bt/api/buildings?sub_zone_id=${zoneId}`).subscribe((json: any) => {
-
     this.http.get(`${this.API_URL}/get-buildings-json/${zoneId}`).subscribe((json: any) => {
       this.json = json;
       console.log(json);
@@ -261,25 +343,27 @@ export class MapComponent implements OnInit {
         onEachFeature: (feature, layer) => {
             layer.on('click', (e) => {
               this.buildingId = feature.properties.building_id;
-              if(feature.properties.status === "INCOMPLETE"){
+              if(feature.properties.status === "COMPLETE"){
+                this.snackBar.open('Building marked complete. Cannot edit', '', {
+                  duration: 5000,
+                  verticalPosition: 'top',
+                  panelClass: ['error-snackbar']
+                });
+              }else{
                 this.router.navigate(['dashboard', this.buildingId]);
                 this.snackBar.open('Building number ' + this.buildingId + ' was successfully selected', '', {
                   duration: 5000,
                   verticalPosition: 'top',
                   panelClass: ['success-snackbar']
                 });
-              }else{
-                this.snackBar.open('Building marked complete. Cannot edit', '', {
-                  duration: 5000,
-                  verticalPosition: 'top',
-                  panelClass: ['error-snackbar']
-                });
               }
             });
           }, pointToLayer: (feature, latLng) => {
             if(feature.properties.status == 'INCOMPLETE'){
               return L.marker(latLng, {icon: this.redMarker});
-            }else{
+            }else if(feature.properties.status == "PROGRESS"){
+              return L.marker(latLng, {icon: this.yellowMarker});
+            } else{
               return L.marker(latLng, {icon: this.greenMarker});
             }
           }

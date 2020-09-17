@@ -41,6 +41,8 @@ export class Household {
   building_id: number;
   hh_name: string;
   contact: string;
+  bhutanese:number;
+  nonBhutanese:number;
   male_10: number;
   female_10: number;
   male_10_60: number;
@@ -128,6 +130,8 @@ export class RegisterComponent implements OnInit {
       mobileNoControl: ['', Validators.compose([Validators.required, Validators.maxLength(8), Validators.minLength(8)])],
       householdControl: [ ],
       diffabledControl: [ ],
+      bhutaneseControl:[],
+      nonBhutaneseControl:[],
     });
     this.shopform = this.fb.group({
       shopTypeControl:[],
@@ -192,6 +196,15 @@ export class RegisterComponent implements OnInit {
     this.dataService.postUnit(this.unit).subscribe(response=>{
       if(response.success === "true"){
         this.unitId = response.data.id
+        this.dataService.postProgress(this.buildingId).subscribe(response=>{
+          if(response['success']==="true"){
+            this.snackBar.open('Building Marked in progress', '', {
+              duration: 2000,
+              verticalPosition: 'bottom',
+              panelClass: ['success-snackbar']
+            });
+          }
+        });
         if(this.unitUse === "Shop"){
           this.registerShop(this.unitId)
         }else if(this.unitUse === "Residential"){
@@ -224,6 +237,8 @@ export class RegisterComponent implements OnInit {
     this.household.contact = this.registerForm.get('mobileNoControl').value;
     this.household.hh_name =  this.registerForm.get('householdControl').value;
     this.household.different_abled = this.registerForm.get('diffabledControl').value;
+    this.household.bhutanese = this.registerForm.get('bhutaneseControl').value;
+    this.household.nonBhutanese = this.registerForm.get('nonBhutaneseControl').value;
     this.household.male_10 = this.ageGender.get('male10Control').value;
     this.household.female_10 = this.ageGender.get('female10Control').value;
     this.household.male_10_60 = this.ageGender.get('male1060Control').value;
