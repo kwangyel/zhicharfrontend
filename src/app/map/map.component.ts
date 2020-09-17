@@ -250,7 +250,7 @@ export class MapComponent implements OnInit {
       maxZoom: 20,
       minZoom: 13,
     });
-    var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    var osm = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       maxZoom: 20,
       minZoom: 13,
     });
