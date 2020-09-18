@@ -65,6 +65,19 @@
           <mat-label>Contact Number</mat-label>
           <input matInput type="number" name="mobileNo" formControlName="mobileNoControl" required min="0" [readonly]="disableForm" required autofocus>
         </mat-form-field>
+        <mat-form-field class="justifier">
+          <mat-label>CID number/Work Permit</mat-label>
+          <input matInput type="text" name="cid" formControlName="cidControl" required min="0" [readonly]="disableForm" required autofocus>
+        </mat-form-field>
+        <mat-form-field class="justifier">
+          <mat-label>Unit Type</mat-label>
+          <mat-select name="bedroomType" formControlName="bedroomTypeControl" [readonly]="disableForm" required>
+            <mat-option *ngFor="let item of bedroomType" [value]="item.id">
+              {{item.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <form [formGroup]="ageGender" >
           <div >
             <mat-form-field appearance="outline" style="width:50%;">

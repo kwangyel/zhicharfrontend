@@ -72,54 +72,6 @@ export class MapComponent implements OnInit {
     this.renderMap();
   }
 
-  // getMyLocation() {
-  //   if (navigator.geolocation) {
-  //     const iconRetinaUrl = 'assets/mymarker.png';
-  //     const iconUrl = 'assets/mymarker.png';
-  //     const iconDefault = L.icon({
-  //       iconRetinaUrl,
-  //       iconUrl,
-  //       iconSize: [20, 20],
-  //       iconAnchor: [12, 41],
-  //       popupAnchor: [1, -34],
-  //       tooltipAnchor: [16, -28],
-  //       shadowSize: [41, 41]
-  //     });
-
-  //     const options = {
-  //       enableHighAccuracy: true,
-  //       timeout: 5000,
-  //       maximumAge: 0
-  //     };
-
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       this.longitude = position.coords.longitude;
-  //       this.latitude = position.coords.latitude;
-  //       this.accuracy = position.coords.accuracy;
-
-  //       if (this.accuracy > 100) {
-  //         L.marker([this.latitude, this.longitude], {icon: iconDefault}).addTo(this.map)
-  //         .bindPopup('You are here')
-  //         .openPopup();
-  //         this.map.flyTo([this.latitude, this.longitude], 19);
-  //         navigator.geolocation.clearWatch(this.watchId);
-  //       } else {
-  //         L.marker([this.latitude, this.longitude], {icon: iconDefault}).addTo(this.map)
-  //         .bindPopup('You are here')
-  //         .openPopup();
-  //         L.circle([this.latitude, this.longitude], {
-  //           color: '#3498db',
-  //           fillColor: '#3498db',
-  //           fillOpacity: 0.3,
-  //           radius: this.accuracy
-  //         }).addTo(this.map);
-  //         this.map.flyTo([this.latitude, this.longitude], 19);
-  //       }
-  //     }, error => {
-  //       console.error('No support for geolocation');
-  //     });
-  //   }
-  // }
   getMyLocation(){
     this.map.locate({setView:true,watch:true,enableHighAccuracy:true});
   }
@@ -248,15 +200,17 @@ export class MapComponent implements OnInit {
   renderMap(){
     var sat = L.tileLayer('https://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}', {
       maxZoom: 20,
-      minZoom: 13,
+      minZoom: 9,
     });
     var osm = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       maxZoom: 20,
-      minZoom: 13,
+      minZoom: 9,
     });
     this.map = L.map('map',{
       center:[27.4712,89.64191],
       zoom: 13,
+      maxZoom: 20,
+      minZoom: 9,
       layers: [sat]
     });
     var baseMaps = {
@@ -266,7 +220,7 @@ export class MapComponent implements OnInit {
 
     L.control.layers(baseMaps,null,{position:"bottomleft"}).addTo(this.map);
     this.onMapReady(this.map);
-
+  
     this.map.on('locationerror',(err)=>{
           if (err.code === 0) {
             this.snackBar.open('Couldnot pull your location, please try again later', '', {

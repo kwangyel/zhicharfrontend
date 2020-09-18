@@ -25,6 +25,7 @@ export class Unit{
   building_id: number;
   remarks: string;
   user_id:number;
+  unitOwnership:string;
 }
 
 export class Shop{
@@ -41,8 +42,10 @@ export class Household {
   building_id: number;
   hh_name: string;
   contact: string;
+  cid: string;
   bhutanese:number;
   nonBhutanese:number;
+  bedroomType: string;
   male_10: number;
   female_10: number;
   male_10_60: number;
@@ -91,6 +94,17 @@ export class RegisterComponent implements OnInit {
     {id: 'false', name: 'no'}
   ];
 
+  bedroomType: UnitType[]=[
+    {id: '1', name: '1BHK'},
+    {id: '2', name: '2BHK'},
+    {id: '3', name: '3BHK'},
+    {id: '4', name: '4BHK'},
+    {id: '5', name: '5BHK'},
+    {id: '6', name: '6BHK'},
+    {id: '7', name: '7BHK'},
+    {id: '8', name: '8BHK'},
+  ];
+
   shoptypes: ShopType[] = [
     {id: '1', name: 'Grocery Shop'},
     {id: '2', name: 'Liquor Shop'},
@@ -129,9 +143,11 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.fb.group({
       mobileNoControl: ['', Validators.compose([Validators.required, Validators.maxLength(8), Validators.minLength(8)])],
       householdControl: [ ],
+      bedroomTypeControl:[],
       diffabledControl: [ ],
       bhutaneseControl:[],
       nonBhutaneseControl:[],
+      cidControl:[],
     });
     this.shopform = this.fb.group({
       shopTypeControl:[],
@@ -186,6 +202,7 @@ export class RegisterComponent implements OnInit {
     this.unit.unit_name = this.unitform.get('unitIdControl').value;
     this.unit.building_id = Number(sessionStorage.getItem('buildingId'));
     this.unit.remarks = this.unitform.get('remarksControl').value;
+    this.unit.unitOwnership = this.registerForm.get('cidControl').value;
 
     if(this.unitUse == 'Others'){
       this.unitUse = this.unitform.get('otherUnitUseControl').value;
@@ -246,6 +263,8 @@ export class RegisterComponent implements OnInit {
     this.household.male_60 = this.ageGender.get('male60Control').value;
     this.household.female_60 = this.ageGender.get('female60Control').value;
     this.household.unit_id = unitid;
+    this.household.bedroomType =  this.registerForm.get('bedroomTypeControl').value;
+    this.household.cid = this.registerForm.get('cidControl').value;
 
     this.dataService.postHousehold(this.household).subscribe(response=>{
       if(response.success === "true"){
