@@ -75,6 +75,14 @@ export class DataService {
       );
   }
 
+  getResident(unitid){
+    return this.http
+      .get<any>(`${this.API_URL}/get-household/${unitid}`,this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   validateQRCode(requestType, uuid) {
     return this.http
       .get<any>(`${this.API_URL}/validate-qr/${requestType}/${uuid}`, this.httpOptions)

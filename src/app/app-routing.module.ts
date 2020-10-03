@@ -10,6 +10,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { MapComponent } from './map/map.component';
 import { RegisterUnitComponent } from './register-unit/register-unit.component';
 import { UploadImageComponent } from './upload-image/upload-image.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'dashboard/:id', component: DashboardComponent, canActivate: [RouteGuard]},
   {path: 'register', component: RegisterComponent,canActivate: [RouteGuard] },
   {path: 'unit', component: RegisterUnitComponent,canActivate: [RouteGuard]},
+  {path: 'admin', component: AdminComponent, canActivate:[RouteGuard]},
   // {path: 'update-household/:id', component: UpdateHouseholdComponent, canActivate: [RouteGuard]},
   // {path: 'changepassword', component: ChangePasswordComponent, canActivate: [RouteGuard]},
   {path: 'map', component: MapComponent,canActivate: [RouteGuard] },

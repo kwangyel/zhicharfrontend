@@ -14,11 +14,11 @@ export class Building {
 }
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.scss']
 })
-export class MapComponent implements OnInit {
+export class AdminComponent implements OnInit {
 
   API_URL = environment.API_URL;
   BASE_URL = environment.BASE_URL;
@@ -36,6 +36,7 @@ export class MapComponent implements OnInit {
   watchId;
   mylocation: L.Marker;
   mycircle: L.Circle;
+  resident: any;
 
   map: L.Map;
 
@@ -299,20 +300,14 @@ export class MapComponent implements OnInit {
         onEachFeature: (feature, layer) => {
             layer.on('click', (e) => {
               this.buildingId = feature.properties.building_id;
-              if(feature.properties.status === "COMPLETE"){
-                this.snackBar.open(`Building with Id ${this.buildingId} marked complete. Cannot edit`, '', {
-                  duration: 5000,
-                  verticalPosition: 'top',
-                  panelClass: ['error-snackbar']
-                });
-              }else{
-                this.router.navigate(['dashboard', this.buildingId]);
-                this.snackBar.open('Building number ' + this.buildingId + ' was successfully selected', '', {
-                  duration: 5000,
-                  verticalPosition: 'top',
-                  panelClass: ['success-snackbar']
-                });
-              }
+              this.http.get(`${this.API_URL}/getunits/${this.buildingId}`).subscribe((json: any) => {
+                this.resident=null;
+                this.units = json.data;
+              });
+
+              this.http.get(`${this.API_URL}/get-img/${this.buildingId}`).subscribe((json: any) => {
+                this.imgs= json.data;
+              });
             });
           }, pointToLayer: (feature, latLng) => {
             if(feature.properties.status == 'INCOMPLETE'){
@@ -334,6 +329,13 @@ export class MapComponent implements OnInit {
       panelClass: ['info-snackbar']
     });
     this.isAddAllowed = true;
+  }
+  showResident(unitid){
+    this.resident = null;
+    this.dataService.getResident(unitid).subscribe(resp=>{
+      this.resident = resp.data;
+      console.log(this.resident);
+    });
   }
 
   presentAlert(latlng) {

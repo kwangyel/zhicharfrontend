@@ -34,6 +34,7 @@ import { RegisterUnitComponent } from './register-unit/register-unit.component';
 import { CameraComponent } from './camera/camera.component';
 import {WebcamModule} from 'ngx-webcam';
 import { UploadImageComponent } from './upload-image/upload-image.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
     RegisterUnitComponent,
     CameraComponent,
     UploadImageComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

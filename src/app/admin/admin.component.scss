@@ -4,8 +4,15 @@
   left: 0;
   right: 0;
   bottom: 0;
-  margin-top: 112px;
-  width:100vw;
+  margin-top: 70px;
+  width:70vw;
+}
+.scroll{
+  width: 30vw; 
+  height: 80vh; 
+  overflow-x: hidden; 
+  overflow-y: auto; 
+  text-align:justify; 
 }
 
 .map-frame {

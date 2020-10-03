@@ -1,0 +1,129 @@
+<mat-toolbar>
+  <!-- <span>Select a structure</span>
+  <span class="menu-spacer"></span>
+  <button mat-raised-button (click)="toggleAdd()" color="primary">
+    <mat-icon>add</mat-icon>
+    <mat-label>Add Structure</mat-label>
+  </button> -->
+</mat-toolbar>
+<div class="map-container">
+  <div class="map-frame">
+    <div id="map">
+      <div class="leaflet-bottom leaflet-right">
+          <button style="
+          width: 42px;
+          border-radius: 23px;
+          height: 42px;
+          background: #ffffffa3;
+          margin-bottom: 20px;
+          border: none;" value="Cancel" class=" span3 leaflet-control" (click)="getMyLocation()">
+            <mat-icon style="color: blue;">location_searching</mat-icon>
+          </button>
+      </div>
+      <div class="leaflet-top leaflet-right">
+        <mat-label style="
+        margin-bottom: 20px;
+        font-size: 13px;
+        font-weight: bold;
+        color: white;
+        background-color: #df1515;
+        padding: 5px;
+        margin-right: 30px;">Select a building by clicking on the red dot</mat-label>
+      </div>
+    </div>
+  </div>
+</div>
+<div class = "scroll" style="float:right;width:30vw;text-align: left;">
+  <h3>Details</h3>
+  <div *ngIf="buildingId">
+    Building ID: {{buildingId}}
+  </div>
+  <br>
+  <div>
+    <mat-list-item *ngFor="let image of imgs">
+      <img src="{{image.uri}}">
+    </mat-list-item>
+  </div>
+  <div *ngIf="units">
+    Unit Details
+    <mat-list-item *ngFor="let unit of units">
+      <div (click)="showResident(unit.id)">Unit name: {{unit.unit_name}}| unit use: {{unit.use}}</div>
+    </mat-list-item>
+    <!-- <mat-list-item *ngfor="let img of imgs">
+      <img src="{{img.uri}}">
+    </mat-list-item> -->
+  </div>
+  <br><br>
+  <div *ngIf="resident">
+    Resident Details
+    <div>
+     1) Head of household : <strong>{{this.resident[0]['hh_name']}}</strong>
+    </div>
+
+    <div>
+     2) CID/Work permit no. : <strong>{{this.resident[0]['cid']}} </strong> 
+    </div>
+    <div>
+     3) Bedroom type : 
+     <strong>
+     {{this.resident[0]['bedroomType']}}
+     </strong>
+    </div>
+    <div>
+     4) Contact Number: 
+     <strong>
+     {{this.resident[0]['Contact']}}
+     </strong>
+    </div>
+    <div>
+     5) Male Below 10 : 
+     <strong>
+     {{this.resident[0]['male_10']}}
+     </strong>
+    </div>
+    <div>
+     6) Female Below 10 : 
+    <strong>
+     {{this.resident[0]['female_10']}}
+    </strong> 
+    </div>
+    <div>
+     7) Male 10 t0 60 : 
+     <strong>
+     {{this.resident[0]['male_10_60']}}
+     </strong>
+    </div>
+    <div>
+     8) Female 10 t0 60 :
+     <strong>
+      {{this.resident[0]['female_10_60']}}
+     </strong>
+    </div>
+    <div>
+     9) Male above 60 : 
+     <strong>
+     {{this.resident[0]['male_60']}}
+     </strong>
+    </div>
+    <div>
+     10) Female above 60 : 
+     <strong>
+     {{this.resident[0]['female_60']}}
+     </strong>
+    </div>
+    <div>
+     11) Total Bhutanese: 
+     <strong>
+     {{this.resident[0]['bhutanese']}}
+     </strong>
+    </div>
+    <div>
+     12) Total non-Bhutanese: 
+     <strong>
+     {{this.resident[0]['nonBhutanese']}}
+     </strong>
+    </div>
+  </div>
+</div>
+
+
