@@ -47,7 +47,9 @@
   <div *ngIf="units">
     Unit Details
     <mat-list-item *ngFor="let unit of units">
-      <div (click)="showResident(unit.id)">Unit name: {{unit.unit_name}}| unit use: {{unit.use}}</div>
+      <div >Unit name: {{unit.unit_name}}| unit use: {{unit.use}}
+         <a *ngIf="unit.use === 'Residential'" (click)="showResident(unit.id)">Click Here for details</a>
+      </div>
     </mat-list-item>
     <!-- <mat-list-item *ngfor="let img of imgs">
       <img src="{{img.uri}}">
