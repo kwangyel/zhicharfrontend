@@ -318,7 +318,7 @@ export class MapComponent implements OnInit {
             if(feature.properties.status == 'INCOMPLETE'){
               return L.marker(latLng, {icon: this.redMarker});
             }else if(feature.properties.status == "PROGRESS"){
-              return L.marker(latLng, {icon: this.greenMarker});
+              return L.marker(latLng, {icon: this.yellowMarker});
             } else{
               return L.marker(latLng, {icon: this.greenMarker});
             }
