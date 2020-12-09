@@ -6,7 +6,7 @@ import { DataService } from '../service/data.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { environment } from '../../environments/environment';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 export class Building {
   lat: number;
@@ -70,13 +70,16 @@ export class AdminComponent implements OnInit {
     private dataService: DataService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
-    private zone: NgZone
+    private fb: FormBuilder,
   ) {
     this.building = new Building();
   }
 
   ngOnInit() {
     this.renderMap();
+    this.searchForm = this.fb.group({
+      searchBuilding:[]
+    })
   }
 
   submit(){
