@@ -164,6 +164,14 @@ export class DataService {
       );
   }
 
+  getStructure(strId){
+    return this.http
+      .get(`${this.API_URL}/get-building/${strId}`,this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
   postAtms(items){
     return this.http
       .post(`${this.API_URL}/create-bulk-atm`,items,this.httpOptions)
