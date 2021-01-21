@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // API_URL: 'http://localhost:8000',
-  API_URL: 'https://zhichar.myddns.rocks/api',
+  API_URL: 'https://zhichar.ddnsfree.com/api',
   BASE_URL: 'http://localhost:4200'
 };
 
